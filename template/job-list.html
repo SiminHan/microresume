@@ -1,0 +1,124 @@
+<div class="col-md-7">
+    <ul class="tabs-nav">
+        <li class="active"><a href="#">推荐招聘</a></li>
+        <li class="" style=""><a href="#">最新招聘</a></li>
+    </ul>
+
+    <div class="tabs-container">
+        <div class="tab-content" style="display: block;">
+            <ul class="jobs" style="padding-left: 0">
+
+                <!--entity-->
+                <li ng-repeat="job in data.recommend_jobs" class="row job-entry">
+
+                    <div class="col-md-2 col-sm-1">
+                        <a href="#">
+                            <img ng-src={{job.company_img}} class="img-responsive" style="border: #DADADA 1px;border-radius: 0;"/>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 col-sm-5">
+                        <p><h4><a href="#">{{job.job_name}}</a></h4></p>
+
+                        <p>
+                            <span class="salary">
+                                <span>{{job.salary_low}}</span>-<span>{{job.salary_high}}</span>
+                            </span>
+                            <span class="company">{{job.company_name}}</span>
+                        </p>
+
+                        <p>
+                            <span >{{job.education}}</span>&nbsp;&nbsp;
+                            <span >{{job.experience}}</span>
+                        </p>
+                    </div>
+                    <div class="col-md-6 text-right hidden-xs">
+                        <div class="">{{job.brief_info}}</div>
+                        <div class="">{{job.welfare}}</div>
+                        <p class="">
+                            <img ng-src={{job.head_img}} class="alignright img-responsive" style="width: 40px;height: 40px"/>
+                            <span>{{job.link_man}}</span>
+                            <span>{{job.link_phone}}</span>
+                            <br>
+                            <span>{{job.publish_date}}</span>
+                        </p>
+                    </div>
+                </li>
+                <!--entity end-->
+
+            </ul>
+
+        </div>
+
+        <div class="tab-content" style="display: none;">
+            <ul class="jobs" style="padding-left: 0">
+
+                <!--entity-->
+                <li ng-repeat="job in data.new_jobs" class="row job-entry">
+
+                    <div class="col-md-2 col-sm-1">
+                        <a href="#">
+                            <img ng-src={{job.company_img}} class="img-responsive" style="border: #DADADA 1px;border-radius: 0;"/>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 col-sm-5">
+                        <p><h4><a href="#">{{job.job_name}}</a></h4></p>
+
+                        <p>
+                            <span class="salary">
+                                <span>{{job.salary_low}}</span>-<span>{{job.salary_high}}</span>
+                            </span>
+                            <span class="company">{{job.company_name}}</span>
+                        </p>
+
+                        <p>
+                            <span >{{job.education}}</span>&nbsp;&nbsp;
+                            <span >{{job.experience}}</span>
+                        </p>
+                    </div>
+                    <div class="col-md-6 text-right hidden-xs">
+                        <div class="">{{job.brief_info}}</div>
+                        <div class="">{{job.welfare}}</div>
+                        <p class="">
+                            <img ng-src={{job.head_img}} class="alignright img-responsive" style="width: 40px;height: 40px"/>
+                            <span>{{job.link_man}}</span>
+                            <span>{{job.link_phone}}</span>
+                            <br>
+                            <span>{{job.publish_date}}</span>
+                        </p>
+                    </div>
+                </li>
+                <!--entity end-->
+
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function(){
+
+        var $tabsNav    = $('.tabs-nav'),
+                $tabsNavLis = $tabsNav.children('li');
+
+        $tabsNav.each(function(){
+            var $this = $(this);
+            $this.next().children('.tab-content').stop(true,true).hide()
+                    .first().show();
+            $this.children('li').first().addClass('active').stop(true,true).show();
+        });
+
+        $tabsNavLis.on('click', function(e) {
+            console.log("aaa");
+            var $this = $(this);
+            $this.siblings().removeClass('active').end()
+                    .addClass('active');
+            var idx = $this.parent().children().index($this);
+            $this.parent().next().children('.tab-content').stop(true,true).hide().eq(idx).fadeIn();
+            e.preventDefault();
+        });
+
+    });
+</script>

@@ -1,0 +1,42 @@
+<div class="col-md-3 hidden-sm">
+    <section class="widget" ng-repeat="catalog in data.catalogues" style="border-top: #01509F 10px solid;">
+
+        <div class="catalogue-widget">
+
+            <a href={{catalog.title.link}}>
+                <h3 class="title five_main">{{catalog.title.name}}
+                    <span>Internet</span>
+                </h3>
+            </a>
+
+            <ul ng-repeat="submenu in catalog.title.submenu">
+                <li class="intro" >
+
+                    <div class="submenu-title">
+                        <a class="sub-catalogue-title" href={{submenu.link}}>{{submenu.title}}</a>
+                        <span class="pull-right glyphicon glyphicon-menu-right"></span>
+                    </div>
+
+                    <div class="hot-type">
+                        <a ng-repeat="hot in submenu.hot" href={{hot.link}} >{{hot.name}}</a>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="submenu">
+                        <div class="leftdiv">
+                            <dl ng-repeat="subtype in submenu.subtype">
+                                <dt><a href={{subtype.link}}>{{subtype.title}}</a></dt>
+                                <dd>
+                                    <a ng-repeat="link in subtype.links" href={{link.link}}>{{link.name}}</a>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+    </section>
+
+</div>
+            

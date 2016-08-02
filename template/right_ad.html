@@ -1,0 +1,20 @@
+<div class="col-md-2">
+    <div class="row">
+    <section class="widget" style="border-top: #01509F 10px solid;">
+
+        <div class="catalogue-widget">
+
+            <a href="#">
+                <h3 class="title" style="font-size: 20px">热门企业</h3>
+            </a>
+        </div>
+
+        <div ng-repeat="right_ad in data.right_ad" class="ad_block col-md-12 col-sm-3 col-xs-4">
+            <a href={{right_ad.link}}>
+                <img ng-src={{right_ad.img_url}} alt={{right_ad.alt}} class="img-responsive">
+            </a>
+        </div>
+
+    </section>
+    </div>
+</div>

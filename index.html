@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN" ng-app="microresume">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title>微简历首页</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/main5152.css" rel="stylesheet">
+
+
+
+    <style>
+        .row{
+
+        }
+    </style>
+
+</head>
+<body>
+    <!-- header start-->
+
+    <div ng-include src="'template/header.html'"  ng-controller="header"></div>
+    <!-- header end-->
+
+    <!-- container start-->
+    <div class="container">
+
+        <!--row1 start-->
+        <div class="row">
+
+            <!--search start-->
+                <div ng-include src="'template/search.html'" ng-controller="search"></div>
+            <!--search end-->
+
+        </div>
+        <!--row1 end-->
+
+        <!--row2 start-->
+        <div class="row">
+            <!--roll start-->
+            <div ng-include src="'template/carousel.html'" ng-controller="carousel"></div>
+            <!--roll end-->
+        </div>
+        <!--row2 end-->
+
+        <!--row3 start-->
+        <div class="row">
+            <!--type start-->
+            <div ng-include src="'template/RowFiveMain.html'" ng-controller="RowFiveMain"></div>
+            <!--type end-->
+        </div>
+        <!--row3 end-->
+
+        <!--row4 start-->
+        <div class="row">
+            <!--left side catalog start-->
+            <div ng-include src="'template/left-side-catalog.html'" ng-controller="left_side_catalog"></div>
+           <!--left side catalog end-->
+
+            <!--job list start-->
+            <div ng-include src="'template/job-list.html'" ng-controller="job_list"></div>
+            <!--job list end-->
+
+            <!--advertisem start-->
+            <div ng-include src="'template/right_ad.html'" ng-controller="right_ad"></div>
+            <!--advertisem end-->
+        </div>
+        <!--row4 end-->
+
+    </div>
+    <!-- container end-->
+
+    <!--footer start-->
+        <div ng-include src="'template/footer.html'" ng-controller="footer"></div>
+    <!--footer end-->
+    <a href="#top" id="scroll-top" style="display: inline;"></a>
+
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/angular.js" type="text/javascript"></script>
+    <script src="js/main.js" type="text/javascript"></script>
+</body>
+</html>
