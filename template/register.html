@@ -1,0 +1,92 @@
+<div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog dialog-head " role="document" style="margin-top: 10%">
+        <div class="modal-content">
+
+            <div class="modal-body container-fluid">
+
+                <div class="row">
+                    <form  name="register_form" ng-submit="reg_form(register_form)" class="form-horizontal col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
+
+                        <div class="row form-group">
+                            类型：
+                            <label>
+                                <input type="radio" class="btn-default" name="type" ng-model="register.type" required value="0"/>个人
+                            </label>
+                            <label>
+                                <input type="radio" class="btn-default" name="type" ng-model="register.type" required value="1"/>企业
+                            </label>
+                            <span ng-show="register_form.$pristine" class="help-block">请选择类型</span>
+                            <div class="help-block" ng-show="register_form.$dirty" >
+                                <span ng-show="register_form.type.$error.required" >类型不能为空</span>
+                            </div>
+                        </div>
+
+
+                        <div class="row form-group">
+                            <label class="sr-only" for="user_name">账号</label>
+                            <input name="u_name" ng_model="register.u_name" required ng-minlength="4" ng-maxlength="15" ng-pattern="/^[a-zA-Z\d]\w{2,14}[a-zA-Z\d]$/" type="text" class="form-control" id="user_name" placeholder="账号">
+                            <span ng-show="register_form.name.$pristine" class="help-block">请输入4-15个字符，只允许数学和字母组合</span>
+                            <div class="help-block" ng-show="register_form.u_name.$dirty" >
+                                <span ng-show="register_form.u_name.$error.required" >不能为空</span>
+                                <span ng-show="register_form.u_name.$error.minlength" >长度不能少于4个字符</span>
+                                <span ng-show="register_form.u_name.$error.maxlength" >长度不能超出15个字符</span>
+                                <span ng-show="register_form.u_name.$error.pattern" >输入的格式不对</span>
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <label class="sr-only" for="password">密码</label>
+                            <input name="u_password" ng-model="register.u_password"  required ng-minlength="6" ng-maxlength="15" ng-pattern="/^[a-zA-Z\d]\w{4,14}[a-zA-Z\d]$/" type="password" class="form-control" id="password" placeholder="密码">
+                            <span ng-show="register_form.password.$pristine"  class="help-block">请输入6-15个字符</span>
+                            <div class="help-block" ng-show="register_form.u_password.$dirty" >
+                                <span ng-show="register_form.u_password.$error.required" >不能为空</span>
+                                <span ng-show="register_form.u_password.$error.minlength" >长度不能少于6个字符</span>
+                                <span ng-show="register_form.u_password.$error.maxlength" >长度不能超出15个字符</span>
+                                <span ng-show="register_form.u_password.$error.pattern" >输入的格式不对</span>
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <label class="sr-only" for="repead_password">确认密码</label>
+                            <input name="repead_password" ng-model="register.rePassword" compare="register.u_password" required type="password" class="form-control" id="repead_password" placeholder="确认密码">
+                            <span  ng-show="register_form.repead_password.$pristine" class="help-block">请输再次输入密码</span>
+                            <div class="help-block" ng-show="register_form.repead_password.$dirty" >
+                                <span ng-show="register_form.repead_password.$error.required" >不能为空</span>
+                                <span ng-show="register_form.repead_password.$error.compare" >两次输入的密码不一致</span>
+                            </div>
+                        </div>
+
+                        <div class="row form-groupe form-inline">
+                            <label class="sr-only" for="verifi_code">验证码</label>
+                            <div class="col-md-5">
+                                <input type="text" name="verifi_code" ng-model="register.verifi_code" required class="form-control btn-block" id="verifi_code" placeholder="验证码，点击图片刷新">
+                            </div>
+                            <div class="col-md-5 col-md-offset-2">
+                                <a href="#"><img class="img-responsive" alt="点击刷新" ng-src="{{verifi_img}}" ng-click="refresh_verifi_img()"/></a>
+                            </div>
+                            <span ng-show="register_form.verifi_code.$pristine" class="help-block">请输入验证码</span>
+                            <div class="help-block" ng-show="register_form.verifi_code.$dirty" >
+                                <span ng-show="register_form.verifi_code.$error.required" >不能为空</span>
+                                <span ng-show="register_form.verifi_code.$error.compare" >验证码错误，点击图片刷新</span>
+                            </div>
+                        </div>
+
+
+                        <div class="row form-group">
+                            <input type="submit" ng-disabled="register_form.$invalid" class="form-control btn-primary"  value="注册">
+                        </div>
+
+                </form>
+            </div>
+
+        </div>
+
+        <!--
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+        -->
+        </form>
+    </div>
+</div>

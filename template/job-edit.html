@@ -1,0 +1,144 @@
+<div class="col-md-9 col-sm-12 col-xs-12"  ng-controller="job_edit">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">职位信息编辑</div>
+        <div class="panel-body">
+            <div class="row">
+                <form  enctype="multipart/form-data" name="edit_job_info_form" ng-submit="edit_job_submit(edit_job_info_form)" class="form-horizontal">
+
+                    <div class="form-group">
+                        <label for="j_name" class="col-sm-2 col-xs-3 control-label">职业名称</label>
+                        <div class="col-sm-5 col-xs-8">
+                            <input type="text" name="j_name" ng-model="job_info.j_name" required minlength="2" maxlength="32" class="form-control" id="j_name" placeholder="职业名称">
+                        </div>
+                        <div class="help-block col-sm-offset-0 col-sm-4 col-xs-12 col-xs-offset-3" >
+                            <span ng-show="edit_job_info_form.j_name.$error.required" >不能为空</span>
+                            <span ng-show="edit_job_info_form.j_name.$error.minlength" >名字过短</span>
+                            <span ng-show="edit_job_info_form.j_name.$error.maxlength" >名字过长</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="j_number" class="col-sm-2 col-xs-3 control-label">招聘人数</label>
+                        <div class="col-sm-5 col-xs-8">
+                            <input type="number"  name="job_info.j_number" required ng-model="job_info.j_number" class="form-control" id="j_number" placeholder="招聘人数">
+                        </div>
+                        <div class="help-block col-sm-offset-0 col-sm-4 col-xs-12 col-xs-offset-3" >
+                            <span ng-show="edit_job_info_form.j_number.$error.required" >不能为空</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="j_min_salary" class="col-sm-2 col-xs-3 control-label">薪资最低</label>
+                        <div class="col-sm-5 col-xs-8">
+                            <input type="number"  name="job_info.j_min_salary" required ng-model="job_info.j_min_salary" class="form-control" id="j_min_salary" placeholder="薪资最低">
+                        </div>
+                        <div class="help-block col-sm-offset-0 col-sm-4 col-xs-12 col-xs-offset-3" >
+                            <span ng-show="edit_job_info_form.j_min_salary.$error.required" >不能为空</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="j_max_salary" class="col-sm-2 col-xs-3 control-label">薪资最高</label>
+                        <div class="col-sm-5 col-xs-8">
+                            <input type="number"  name="job_info.j_max_salary" required ng-model="job_info.j_max_salary" class="form-control" id="j_max_salary" placeholder="薪资最高">
+                        </div>
+                        <div class="help-block col-sm-offset-0 col-sm-4 col-xs-12 col-xs-offset-3" >
+                            <span ng-show="edit_job_info_form.j_max_salary.$error.required" >不能为空</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="j_address" class="col-sm-2 col-xs-3 control-label">工作地址</label>
+                        <div class="col-sm-5 col-xs-8">
+                            <input type="text"  name="job_info.j_address" required ng-model="job_info.j_address" maxlength="64" class="form-control" id="j_address" placeholder="工作地址">
+                        </div>
+                        <div class="help-block col-sm-offset-0 col-sm-4 col-xs-12 col-xs-offset-3" >
+                            <span ng-show="edit_job_info_form.j_address.$error.required" >不能为空</span>
+                            <span ng-show="edit_job_info_form.j_address.$error.maxlength" >地址过长</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="col-sm-2 col-xs-3 control-label">行业分类</label>
+                        <div class="col-sm-2 col-xs-3">
+                            <select class="form-control" ng-model="first_menu" ng-options="c.c_id as c.c_name for c in catalogue|filter:get_first_menu">
+                            </select>
+                        </div>
+                        <div class="col-sm-2 col-xs-3">
+                            <select class="form-control"  ng-model="second_menu" ng-options="c.c_id as c.c_name for c in catalogue|filter:get_second_menu">
+                            </select>
+                        </div>
+                        <div class="col-sm-2 col-xs-3">
+                            <select class="form-control" ng-model="job_info.c_id" ng-options="c.c_id as c.c_name for c in catalogue|filter:get_third_menu">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="j_summary" class="col-sm-2 col-xs-3 control-label">简要说明</label>
+                        <div class="col-sm-5 col-xs-8">
+                            <input type="text"  name="job_info.j_summary" required ng-model="job_info.j_summary" maxlength="64" class="form-control" id="j_summary" placeholder="简要说明">
+                        </div>
+                        <div class="help-block col-sm-offset-0 col-sm-4 col-xs-12 col-xs-offset-3" >
+                            <span ng-show="edit_job_info_form.j_summary.$error.required" >不能为空</span>
+                            <span ng-show="edit_job_info_form.j_summary.$error.maxlength" >地址过长</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="j_intro" class="col-sm-2 col-xs-3 control-label">工作描述</label>
+                        <div class="col-sm-5 col-xs-8">
+                            <textarea rows="8"  name="job_info.j_intro" ng-model="job_info.j_intro" required class="form-control" maxlength="512" id="j_intro" placeholder="工作描述"></textarea>
+                        </div>
+                        <div class="help-block col-sm-offset-0 col-sm-4 col-xs-12 col-xs-offset-3" >
+                            <span ng-show="edit_job_info_form.j_intro.$error.required" >不能为空</span>
+                            <span ng-show="edit_job_info_form.j_intro.$error.maxlength" >介绍过长</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="j_education" class="col-sm-2 col-xs-3 control-label">学历要求</label>
+                        <div class="col-sm-2 col-xs-3">
+                            <select class="form-control" id="j_education" ng-model="job_info.j_education"  ng-options="edu.id as edu.value for edu in education">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="j_experience" class="col-sm-2 col-xs-3 control-label">经验要求</label>
+                        <div class="col-sm-5 col-xs-8">
+                            <input type="text"  name="job_info.j_experience" required ng-model="job_info.j_experience" maxlength="32" class="form-control" id="j_experience" placeholder="经验要求">
+                        </div>
+                        <div class="help-block col-sm-offset-0 col-sm-4 col-xs-12 col-xs-offset-3" >
+                            <span ng-show="edit_job_info_form.j_experience.$error.required" >不能为空</span>
+                            <span ng-show="edit_job_info_form.j_experience.$error.maxlength" >描述过长</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="j_requirement" class="col-sm-2 col-xs-3 control-label">工作要求</label>
+                        <div class="col-sm-5 col-xs-8">
+                            <textarea rows="8"  name="job_info.j_requirement" ng-model="job_info.j_requirement" required class="form-control" maxlength="512" id="j_requirement" placeholder="工作要求"></textarea>
+                        </div>
+                        <div class="help-block col-sm-offset-0 col-sm-4 col-xs-12 col-xs-offset-3" >
+                            <span ng-show="edit_job_info_form.j_requirement.$error.required" >不能为空</span>
+                            <span ng-show="edit_job_info_form.j_requirement.$error.maxlength" >介绍过长</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit"   ng-disabled="edit_job_info_form.$invalid"  class="btn btn-primary">保存</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <div class="panel-footer">
+
+        </div>
+    </div>
+
+</div>

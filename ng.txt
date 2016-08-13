@@ -1,0 +1,30 @@
+构建一个ng表单
+1.确保form上标签有一个name属性，像下面的例子一样。最好再加一个novalidate=”novalidate”
+2.form中不能有action属性。提交交由ng-submit处理
+3.每个input一定要有ng-model，最好有一个name方便引用。然后用require或者ng-minlength之类才起作用
+<form name="form" novalidate="novalidate">
+  <label name="email">Your email</label>
+  <input type="email" name="email" ng-model="email" placeholder="Email Address" />
+</form>
+
+ng默认提供了验证
+验证是否已输入文字，只需在标签上加上required：
+<input type="text" ng-model="user.name" required />
+
+验证至少输入{number}个字符，使用指令ng-minlength=“{number}”：
+<input type="text" ng-model="user.name" ng-minlength="5" />
+
+验证至多输入{number}个字符，使用指令ng-maxlength=“{number}”：
+<input type="text" ng-model="user.name" ng-maxlength="20" />
+
+确保输入匹配一个正则表达式，使用指令ng-pattern="/PATTERN/":
+<input type="text" ng-model="user.name" ng-pattern="/a-zA-Z/" />
+
+验证输入是一个Email，设置input的type属性为email：
+<input type="email" name="email" ng-model="user.email" />
+
+验证输入是一个数字，设置input的type属性为number：
+<input type="number" name="number" ng-model="user.age" />
+
+验证输入是一个URL，设置input的type属性为url
+<input type="url" name="homepage" ng-model="user.weburl" />

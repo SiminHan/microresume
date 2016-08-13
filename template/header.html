@@ -1,19 +1,23 @@
 <!-- <h1>name:{{name}}</h1> -->
 <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
     <div class="container">
+
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header ">
+        <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+                <span class="glyphicon glyphicon-user" style="color: #ffffff;font-size: 20px"></span>
             </button>
+
+            <a class="flypanels-button-left icon-menu visible-xs visible-sm navbar-brand" data-panel="treemenu" href="#">
+                <i class="glyphicon glyphicon-th-list"></i>
+            </a>
+
             <a class="navbar-brand" href="#">
                 <strong style="font-size: 35px">Neusoft</strong>
             </a>
             <p class="navbar-text">广州</p>
-            <a href="#" class="navbar-text hidden-xs">[切换地址]</a>
+            <a href="#" data-toggle="modal" data-target="#changeCity"  class="navbar-text hidden-xs">[切换地址]</a>
 
         </div>
 
@@ -22,17 +26,78 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" >
                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span>个人中心 <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">登录</a></li>
-                        <li><a href="#">注册</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#login">登录</a></li>
+                        <li><a href="#"  data-toggle="modal" data-target="#register">注册</a></li>
                         <li><a class="visible-xs" href="#">进入简历</a></li>
                     </ul>
-                    <a href="#" class="navbar-text visible-xs">[切换地址]</a>
+                    <a href="#" data-toggle="modal" data-target="#changeCity" class="navbar-text visible-xs">[切换地址]</a>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+
+<!-- Modal login start-->
+<div class="modal fade" id="changeCity" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog dialog-head" role="document" style="margin-top: 10%">
+        <div class="modal-content">
+
+            <div class="modal-body container-fluid">
+
+               <div class="row">
+                   <div class="col-md-10 col-md-offset-1">
+                       <button type="button" class="btn btn-primary btn-lg col-md-2 col-md-offset-1">广州</button>
+                       <button type="button" class="btn btn-default btn-lg col-md-2 col-md-offset-1">深圳</button>
+                       <button type="button" class="btn btn-default btn-lg col-md-2 col-md-offset-1">上海</button>
+                       <button type="button" class="btn btn-default btn-lg col-md-2 col-md-offset-1">北京</button>
+                       <button type="button" class="btn btn-default btn-lg col-md-2 col-md-offset-1">天津</button>
+                       <button type="button" class="btn btn-default btn-lg col-md-2 col-md-offset-1">大连</button>
+                       <button type="button" class="btn btn-default btn-lg col-md-2 col-md-offset-1">杭州</button>
+                       <button type="button" class="btn btn-default btn-lg col-md-2 col-md-offset-1">成都</button>
+                       <button type="button" class="btn btn-default btn-lg col-md-2 col-md-offset-1">重庆</button>
+                       <button type="button" class="btn btn-default btn-lg col-md-2 col-md-offset-1">其他</button>
+                   </div>
+            </div>
+
+        </div>
+
+        <!--
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+        -->
+        </form>
+    </div>
+</div>
+</div>
+<!-- Modal changeCity end-->
+
+<!-- Modal register start-->
+<div ng-include src="'template/register.html'" ng-controller="register"></div>
+<!-- Modal register end-->
+
+<!-- Modal login start-->
+<div ng-include src="'template/login.html'" ng-controller="login"></div>
+<!-- Modal login end-->
+
+<script>
+    $(document).ready(function(){
+        $('.flypanels-container').flyPanels({
+            treeMenu: {
+                init: true
+            },
+            search: {
+                init: false,
+                saveQueryCookie: false
+            }
+        });
+        FastClick.attach(document.body);
+    });
+</script>
+
+

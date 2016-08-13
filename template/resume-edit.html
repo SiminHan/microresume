@@ -1,0 +1,143 @@
+<div class="col-md-9 col-sm-12 col-xs-12"  ng-controller="resume_edit">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">简历编辑</div>
+        <div class="panel-body">
+            <div class="row">
+
+                <form enctype="multipart/form-data" name="edit_user_resume_form" ng-submit="edit_user_resume_submit()" class="form-horizontal">
+
+                    <div class="form-group">
+                        <label for="ui_pic" class="col-sm-2 col-xs-3 control-label">头像</label>
+                        <div class="col-sm-5 col-xs-8 ">
+                            <img ng-src={{resume.r_pic}} id="head_img_view" class="img-responsive">
+                            <input type="file"  ng-model="user_info.ui_pic"  name="ui_pic" class="form-control" id="ui_pic">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="r_name" class="col-sm-2 col-xs-3 control-label">简历名字</label>
+                        <div class="col-sm-5 col-xs-8">
+                            <input  type="text" name="r_name" ng-model="resume.r_name" required ng-maxlength="32" class="form-control" id="r_name" placeholder="简历名字">
+                        </div>
+                        <div class="help-block col-sm-offset-0 col-sm-4 col-xs-12 col-xs-offset-3">
+                            <span ng-show="edit_user_resume_form.r_name.$error.required" >必须填写,为你的简历起个名字吧，只有你自己能看到,长度不能超过32个字符</span>
+                            <span ng-show="edit_user_resume_form.r_name.$error.maxlength" >长度超过了32个字符</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="r_note" class="col-sm-2 col-xs-3 control-label">简历备注</label>
+                        <div class="col-sm-5 col-xs-8">
+                            <textarea  type="text" name="r_note" rows="3" ng-model="resume.r_note" ng-maxlength="128" class="form-control" id="r_note" placeholder="简历备注"></textarea>
+                        </div>
+                        <div class="help-block col-sm-offset-0 col-sm-4 col-xs-12 col-xs-offset-3">
+                            <span ng-show="edit_user_resume_form.r_note.$error.required" >必须填写,为你的简历写个备注吧，只有你自己能看到,长度不能超过128个字符</span>
+                            <span ng-show="edit_user_resume_form.r_note.$error.maxlength" >长度超过了128个字符</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="col-sm-2 col-xs-3 control-label">求职状态</label>
+                        <div class="col-sm-5 col-xs-8">
+                            <select class="form-control" ng-model="resume.r_job_state">
+                                <option value="1">在职</option>
+                                <option value="2">离职，暂时不准备工作</option>
+                                <option value="3">代表离职，准备工作</option>
+                                <option value="4">其他状态</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="r_min_expected_salary" class="col-sm-2 col-xs-3 control-label">最低期望月薪</label>
+                        <div class="col-sm-5 col-xs-8">
+                            <input type="number" name="r_min_expected_salary" ng-model="resume.r_min_expected_salary" required  class="form-control" id="r_min_expected_salary" placeholder="最低期望月薪">
+                        </div>
+                        <div class="help-block col-sm-offset-0 col-sm-4 col-xs-12 col-xs-offset-3" >
+                            <span ng-show="edit_user_resume_form.r_min_expected_salary.$required" >请输入数字</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="r_max_expected_salary" class="col-sm-2 col-xs-3 control-label">最高期望月薪</label>
+                        <div class="col-sm-5 col-xs-8">
+                            <input  type="number" name="r_max_expected_salary"  ng-model="resume.r_max_expected_salary" required  class="form-control" id="r_max_expected_salary" placeholder="最高期望月薪">
+                        </div>
+                        <div class="help-block col-sm-offset-0 col-sm-4 col-xs-12 col-xs-offset-3" >
+                            <span ng-show="edit_user_resume_form.r_max_expected_salary.$required" >请输入数字</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="r_intro" class="col-sm-2 col-xs-3 control-label">自我描述</label>
+                        <div class="col-sm-5 col-xs-8">
+                            <textarea  type="text" name="r_intro" rows="3" ng-model="resume.r_intro" required ng-maxlength="256" class="form-control" id="r_intro" placeholder="自我描述"></textarea>
+                        </div>
+                        <div class="help-block col-sm-offset-0 col-sm-4 col-xs-12 col-xs-offset-3">
+                            <span ng-show="edit_user_resume_form.r_intro.$error.required" >必须填写</span>
+                            <span ng-show="edit_user_resume_form.r_intro.$error.maxlength" >长度超过了256个字符</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="r_advanture" class="col-sm-2 col-xs-3 control-label">个人优势</label>
+                        <div class="col-sm-5 col-xs-8">
+                            <textarea  type="text" name="r_advanture" rows="3" ng-model="resume.r_advanture"  ng-maxlength="256" class="form-control" id="r_advanture" placeholder="个人优势"></textarea>
+                        </div>
+                        <div class="help-block col-sm-offset-0 col-sm-4 col-xs-12 col-xs-offset-3" >
+                            <span ng-show="edit_user_resume_form.r_advanture.$error.maxlength" >长度过长</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="col-sm-2 col-xs-3 control-label">教育经历</label>
+                        <div class="col-sm-9 col-xs-8">
+
+                            <div ng-repeat="graduate in resume.graduate">
+                                <div ng-include src="'template/graduate-edit.html'"></div>
+                            </div>
+
+                            <div>
+                                <button class="btn btn-default" ng-click="add_graduate()">增加一条记录</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="col-sm-2 col-xs-3 control-label">工作经历</label>
+                        <div class="col-sm-9 col-xs-8">
+
+                            <div ng-repeat="experience in resume.experience">
+                                <div ng-include src="'template/experience-edit.html'"></div>
+                            </div>
+                            <div>
+                                <button class="btn btn-default"  ng-click="add_experience()">增加一条记录</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-xs-offset-3 col-sm-9 col-xs-8">
+                            <button type="submit" ng-disabled="edit_user_info_form.$invalid"  class="btn btn-primary  pull-right" data-toggle="tooltip" data-placement="top" title="发布后不可修改，该简历可以被企业搜到" ng-click="publish_resume()">发布</button>
+                            <button type="submit" ng-disabled="edit_user_info_form.$invalid"  class="btn btn-primary  pull-right" data-toggle="tooltip" data-placement="top" title="保存后可被修改，该简历不能被企业搜到" ng-click="save_resume()" style="margin-right: 10px">保存</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <div class="panel-footer">
+        </div>
+    </div>
+
+</div>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>

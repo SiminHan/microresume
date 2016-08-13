@@ -4,16 +4,16 @@
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-btn">
-                        <button type="button" class="btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">职位 <span class="caret"></span></button>
+                        <button type="button" class="btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{show}} <span class="caret"></span></button>
                         <ul class="dropdown-menu">
-                            <li><a href="#">公司</a></li>
+                            <li ng-click="exchange()"><a>{{list}}</a></li>
                         </ul>
                     </div><!-- /btn-group -->
 
-                    <input type="text" class="form-control input-lg"  aria-label="" placeholder="Search...">
+                    <input type="text" ng-model="ctrlScope.search_text" class="form-control input-lg"  placeholder="Search...">
 
                     <div class="input-group-btn">
-                        <button class="btn btn-lg btn-primary " type="button">
+                        <button class="btn btn-lg btn-primary " ng-click="search_submit()" type="button">
                             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                         </button>
                     </div>

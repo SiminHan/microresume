@@ -1,0 +1,143 @@
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document" style="margin-top: 10%">
+        <div class="modal-content">
+
+
+            <ul class="tabs-nav">
+                <li class="active" style="width: 50%"><a href="#">用户登录</a></li>
+                <li class="" style="width: 50%"><a href="#">企业登录</a></li>
+            </ul>
+            <div class="tabs-container" style="padding-top: 20px">
+                <!--user login panel start-->
+                <div class="tab-content" style="display: block;">
+                    <div class="row">
+                        <!--panel start-->
+                        <div class="col-md-12">
+                            <div class="row">
+                                <form name="user_login_form" ng-submit="user_login_submit(user_login_form)" class="form-horizontal col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+
+                                    <div class="row form-group">
+                                        <label class="sr-only" for="user_username_login">账号</label>
+                                        <input type="text" class="form-control" name="u_name" ng-model="user_login.u_name" id="user_username_login" placeholder="账号">
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <label class="sr-only" for="user_password_login">密码</label>
+                                        <input type="password" class="form-control" name="u_password" ng-model="user_login.u_password" id="user_password_login" placeholder="密码">
+                                        <span class="help-block"></span>
+                                    </div>
+
+                                    <div class="row form-groupe form-inline">
+                                        <label class="sr-only" for="user_verifi_code_login">验证码</label>
+                                        <input type="text" class="form-control btn-block" ng-model="verifi_code" id="user_verifi_code_login" placeholder="验证码">
+                                        <a href="#"><img class="img-responsive" alt="点击刷新" ng-src="{{verifi_img}}" ng-click="refresh_verifi_img()"/></a>
+                                        <span  class="help-block"></span>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <label class="sr-only" for="user_remenber_me_login">记住密码</label>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input id="user_remenber_me_login" type="checkbox" ng-model="remenber"> 记住密码
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <input type="submit" class="form-control btn-primary" id="user_loginbtn" value="登录">
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                        <!--panel end-->
+                    </div>
+                </div>
+                <!--user login panel end-->
+
+                <!--ent login panel start-->
+                <div class="tab-content" style="">
+                    <div class="row">
+                        <!--right panel start-->
+                        <div class="col-md-12">
+                            <div class="row">
+                                <form name="ent_login_form" ng-submit="ent_login_submit(ent_login_form)" class="form-horizontal col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+
+                                    <div class="row form-group">
+                                        <label class="sr-only" for="ent_username_login">账号</label>
+                                        <input type="text" class="form-control" name="e_name" ng-model="ent_login.e_name"  id="ent_username_login" placeholder="账号">
+                                        <span class="help-block"></span>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <label class="sr-only" for="ent_password_login">密码</label>
+                                        <input type="password" class="form-control" name="e_password" ng-model="ent_login.e_password" id="ent_password_login" placeholder="密码">
+                                        <span class="help-block"></span>
+                                    </div>
+
+                                    <div class="row form-groupe form-inline">
+                                        <label class="sr-only" for="ent_verifi_code_login">验证码</label>
+                                        <input type="text" class="form-control btn-block" ng-model="ent_login.verifi_code" id="ent_verifi_code_login" placeholder="验证码">
+
+                                        <a href="#"><img class="img-responsive"  alt="点击刷新" ng-src="{{verifi_img}}" ng-click="refresh_verifi_img()"/></a>
+
+                                        <span  class="help-block"></span>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <label class="sr-only" for="ent_remenber_me_login">记住密码</label>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input id="ent_remenber_me_login" type="checkbox" ng-model="remenber"> 记住密码
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <input type="submit" class="form-control btn-primary" id="ent_loginbtn" value="登录">
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                        <!--right panel end-->
+
+                    </div>
+                </div>
+                <!--ent login panel start-->
+                <div style="padding-left: 25%;">
+                    <a href="#" data-toggle="modal" data-target="#register">未有账号，先去注册</a>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    $(function(){
+
+        var $tabsNav    = $('.tabs-nav'),
+                $tabsNavLis = $tabsNav.children('li');
+
+        $tabsNav.each(function(){
+            var $this = $(this);
+            $this.next().children('.tab-content').stop(true,true).hide()
+                    .first().show();
+            $this.children('li').first().addClass('active').stop(true,true).show();
+        });
+
+        $tabsNavLis.on('click', function(e) {
+            console.log("aaa");
+            var $this = $(this);
+            $this.siblings().removeClass('active').end()
+                    .addClass('active');
+            var idx = $this.parent().children().index($this);
+            $this.parent().next().children('.tab-content').stop(true,true).hide().eq(idx).fadeIn();
+            e.preventDefault();
+        });
+
+    });
+</script>

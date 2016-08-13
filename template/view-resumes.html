@@ -1,0 +1,186 @@
+<div class="col-md-7">
+    <ul class="tabs-nav">
+        <li class="active" ng-click="isBtnActive(true)"><a href="#">未审核</a></li>
+        <li class="" style="" ng-click="isBtnActive(false)"><a href="#">通过</a></li>
+        <li class="" style="" ng-click="isBtnActive(false)"><a href="#">淘汰</a></li>
+    </ul>
+
+    <div class="tabs-container">
+
+        <div class="row search-and-new">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="input-group">
+                    <input type="text" ng-model="search_resume_text" class="form-control" placeholder="输入关键字快速查找">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" ng-click="title='d_time';desc=!desc">投递日期</button>
+                      </span>
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" id="check_time_btn"  disabled  ng-click="title='d_checktime';desc=!desc">审核日期</button>
+                      </span>
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" id="score_btn"  disabled  ng-click="title='d_score';desc=!desc">分数</button>
+                      </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" style="display: block;">
+            <ul class="jobs" style="padding-left: 0">
+                <!--resume entity start-->
+                <li class="resume-summary" ng-repeat="resume in data|filter:{d_check:1}|filter:{$:search_text}|orderBy:title:desc">
+                    <div class="row">
+                        <div class="col-md-11 col-xs-12 col-sm-9 ">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-3 col-xs-3 col-xs-4">
+                                    <a href="#"><img ng-src={{resume.r_pic}} class="img-responsive img-circle resume-img"></a>
+                                </div>
+                                <div class="col-md-9 col-sm-9 col-xs-8">
+                                    <h4>
+                                        <a href="/deliver={{resume.d_id}}" class="resume-name">{{resume.ui_real_name}}</a>
+                                        <span class="resume-sex" >{{getSex(resume.ui_sex)}}</span>&nbsp;&nbsp;
+                                        <span class="resume-age">{{getAge(resume.ui_birth_date)}}岁</span>
+                                    </h4>
+                                    <h5>
+                                        <span class="resume-c_name">{{resume.c_name}}</span>
+                                        <span class="salary">{{resume.r_min_expected_salary}}-{{resume.r_max_expected_salary}}</span>
+                                    </h5>
+                                    <p>
+                                        {{resume.r_intro}}——{{resume.d_time|date:'yyyy-MM-dd'}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-1 text-right col-xs-12 col-sm-3 job-entry-right">
+                            <button class="btn btn-default pull-right resume-btn btn-share" ng-click='publish_resume(resume.r_id)' type="button">
+                                删除
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                <!--resume entity end-->
+            </ul>
+
+        </div>
+
+        <div class="tab-content" style="none: block;">
+            <ul class="jobs" style="padding-left: 0">
+                <!--resume entity start-->
+                <li class="resume-summary" ng-repeat="resume in data|filter:{d_check:2}|filter:{$:search_text}|orderBy:title:desc">
+                    <div class="row">
+                        <div class="col-md-11 col-xs-12 col-sm-9 ">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-3 col-xs-3 col-xs-4">
+                                    <a href="#"><img ng-src={{resume.r_pic}} class="img-responsive img-circle resume-img"></a>
+                                </div>
+                                <div class="col-md-9 col-sm-9 col-xs-8">
+                                    <h4>
+                                        <a href="/deliver={{resume.d_id}}" class="resume-name">{{resume.ui_real_name}}</a>
+                                        <span class="resume-sex" >{{getSex(resume.ui_sex)}}</span>&nbsp;&nbsp;
+                                        <span class="resume-age">{{getAge(resume.ui_birth_date)}}岁</span>
+                                    </h4>
+                                    <h5>
+                                        <span class="resume-c_name">{{resume.c_name}}</span>
+                                        <span class="salary">{{resume.r_min_expected_salary}}-{{resume.r_max_expected_salary}}</span>
+                                    </h5>
+                                    <p>
+                                        {{resume.r_intro}}——{{resume.d_time|date:'yyyy-MM-dd'}}
+                                    </p>
+                                    <p class="审核备注:">
+                                        {{resume.d_checknote}}——{{resume.d_checktime|date:'yyyy-MM-dd'}}
+                                    <p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-1 text-right col-xs-12 col-sm-3 job-entry-right">
+                            <span class="resume-score"><span class="salary">{{resume.d_score}}</span>分</span>
+                            <button class="btn btn-default pull-right resume-btn btn-remove" ng-click='remove_resume(resume.r_id)' type="button">
+                                淘汰
+                            </button>
+                            <button class="btn btn-default pull-right resume-btn btn-edit" ng-click='edit_resume(resume.r_id)' type="button">
+                                删除
+                            </button>
+                        </div>
+
+                    </div>
+                </li>
+                <!--resume entity end-->
+            </ul>
+
+        </div>
+
+        <div class="tab-content" style="none: block;">
+            <ul class="jobs" style="padding-left: 0">
+                <!--resume entity start-->
+                <li class="resume-summary" ng-repeat="resume in data|filter:{d_check:3}|filter:{$:search_text}|orderBy:title:desc">
+                    <div class="row">
+                        <div class="col-md-11 col-xs-12 col-sm-9 ">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-3 col-xs-3 col-xs-4">
+                                    <a href="#"><img ng-src={{resume.r_pic}} class="img-responsive img-circle resume-img"></a>
+                                </div>
+                                <div class="col-md-9 col-sm-9 col-xs-8">
+                                    <h4>
+                                        <a href="/deliver={{resume.d_id}}" class="resume-name">{{resume.ui_real_name}}</a>
+                                        <span class="resume-sex" >{{getSex(resume.ui_sex)}}</span>&nbsp;&nbsp;
+                                        <span class="resume-age">{{getAge(resume.ui_birth_date)}}岁</span>
+                                    </h4>
+                                    <h5>
+                                        <span class="resume-c_name">{{resume.c_name}}</span>
+                                        <span class="salary">{{resume.r_min_expected_salary}}-{{resume.r_max_expected_salary}}</span>
+                                    </h5>
+                                    <p>
+                                        {{resume.r_intro}}——{{resume.d_time|date:'yyyy-MM-dd'}}
+                                    </p>
+                                    <p class="审核备注:">
+                                        {{resume.d_checknote}}——{{resume.d_checktime|date:'yyyy-MM-dd'}}
+                                    <p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-1 text-right col-xs-12 col-sm-3 job-entry-right">
+                            <span class="resume-score"><span class="salary">{{resume.d_score}}</span>分</span>
+                            <button class="btn btn-default pull-right resume-btn btn-remove" ng-click='remove_resume(resume.r_id)' type="button">
+                                通过
+                            </button>
+                            <button class="btn btn-default pull-right resume-btn btn-edit" ng-click='edit_resume(resume.r_id)' type="button">
+                                删除
+                            </button>
+                        </div>
+
+                    </div>
+                </li>
+                <!--resume entity end-->
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(function(){
+
+        var $tabsNav    = $('.tabs-nav'),
+                $tabsNavLis = $tabsNav.children('li');
+
+        $tabsNav.each(function(){
+            var $this = $(this);
+            $this.next().children('.tab-content').stop(true,true).hide()
+                    .first().show();
+            $this.children('li').first().addClass('active').stop(true,true).show();
+        });
+
+        $tabsNavLis.on('click', function(e) {
+            console.log("aaa");
+            var $this = $(this);
+            $this.siblings().removeClass('active').end()
+                    .addClass('active');
+            var idx = $this.parent().children().index($this);
+            $this.parent().next().children('.tab-content').stop(true,true).hide().eq(idx).fadeIn();
+            e.preventDefault();
+        });
+
+    });
+</script>

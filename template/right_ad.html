@@ -9,11 +9,13 @@
             </a>
         </div>
 
-        <div ng-repeat="right_ad in data.right_ad" class="ad_block col-md-12 col-sm-3 col-xs-4">
-            <a href={{right_ad.link}}>
-                <img ng-src={{right_ad.img_url}} alt={{right_ad.alt}} class="img-responsive">
+
+        <div ng-repeat="right_ad in data|orderBy:'-sa_index'" class="ad_block col-md-12 col-sm-3 col-xs-4">
+            <a href={{right_ad.sa_link}}>
+                <img ng-src={{right_ad.sa_url}} alt={{right_ad.sa_name}} class="img-responsive">
             </a>
         </div>
+
 
     </section>
     </div>

@@ -1,0 +1,172 @@
+<div class="col-md-9 col-sm-12 col-xs-12"  ng-controller="ent_info_edit">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">企业信息编辑</div>
+        <div class="panel-body">
+            <div class="row">
+                <form  enctype="multipart/form-data" name="edit_ent_info_form" ng-submit="edit_ent_info_submit(edit_ent_info_form)" class="form-horizontal">
+
+                    <div class="form-group">
+                        <label for="ei_pic" class="col-sm-2 col-xs-3 control-label">企业logo</label>
+                        <div class="col-sm-5 col-xs-8 ">
+                            <img ng-src={{ent_info.ei_pic}} id="head_img_view_logo" class="img-responsive img-rounded">
+                            <input type="file"  ng-model="ent_info.ei_pic"  name="ei_pic" class="form-control" id="ei_pic">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ei_name" class="col-sm-2 col-xs-3 control-label">企业名称</label>
+                        <div class="col-sm-5 col-xs-8">
+                            <input type="text" name="ei_name" ng-model="ent_info.ei_name" required minlength="2" maxlength="32" ng-pattern="/^[\u4e00-\u9fa5 ]{2,32}$/" class="form-control" id="ei_name" placeholder="企业名称">
+                        </div>
+                        <div class="help-block col-sm-offset-0 col-sm-4 col-xs-12 col-xs-offset-3" >
+                            <span ng-show="edit_ent_info_form.ei_name.$error.required" >不能为空</span>
+                            <span ng-show="edit_ent_info_form.ei_name.$error.pattern" >格式不正确</span>
+                            <span ng-show="edit_ent_info_form.ei_name.$error.minlength" >名字过短</span>
+                            <span ng-show="edit_ent_info_form.ei_name.$error.maxlength" >名字过长</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="col-sm-2 col-xs-3 control-label">所在城市</label>
+                        <div class="col-sm-3 col-xs-3">
+                            <select ng-model="ent_info.province_id"  class="form-control" ng-options="p.province_id as p.province_name for p in provinces">
+                            </select>
+                        </div>
+                        <div class="col-sm-3 col-xs-3">
+                            <select ng-model="ent_info.city_id"  class="form-control" ng-options="p.city_id as p.city_name for p in cities|filter:{province_id:ent_info.province_id}">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ei_address" class="col-sm-2 col-xs-3 control-label">企业地址</label>
+                        <div class="col-sm-5 col-xs-8">
+                            <input type="text"  name="ent_info.ei_address" required ng-model="ent_info.ei_address" maxlength="64" class="form-control" id="ei_address" placeholder="企业地址">
+                        </div>
+                        <div class="help-block col-sm-offset-0 col-sm-4 col-xs-12 col-xs-offset-3" >
+                            <span ng-show="edit_ent_info_form.ei_address.$error.required" >不能为空</span>
+                            <span ng-show="edit_ent_info_form.ei_address.$error.maxlength" >地址过长</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ei_email" class="col-sm-2 col-xs-3 control-label">企业邮箱</label>
+                        <div class="col-sm-5 col-xs-8">
+                            <input type="email" ng-model="ent_info.ei_email" name="ei_email" required class="form-control" id="ei_email" placeholder="电子邮箱">
+                        </div>
+                        <div class="help-block col-sm-offset-0 col-sm-4 col-xs-12 col-xs-offset-3" >
+                            <span ng-show="edit_ent_info_form.ei_email.$error.required" >不能为空</span>
+                            <span ng-show="edit_ent_info_form.ei_email.$error.email" >格式不正确</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="col-sm-2 col-xs-3 control-label">所属行业</label>
+                        <div class="col-sm-2 col-xs-3">
+                            <select class="form-control" ng-model="first_menu" ng-options="c.c_id as c.c_name for c in catalogue|filter:get_first_menu">
+                            </select>
+                        </div>
+                        <div class="col-sm-2 col-xs-3">
+                            <select class="form-control"  ng-model="second_menu" ng-options="c.c_id as c.c_name for c in catalogue|filter:get_second_menu">
+                            </select>
+                        </div>
+                        <div class="col-sm-2 col-xs-3">
+                            <select class="form-control" ng-model="ent_info.c_id" ng-options="c.c_id as c.c_name for c in catalogue|filter:get_third_menu">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="col-sm-2 col-xs-3 control-label">企业性质</label>
+                        <div class="col-sm-5 col-xs-8">
+                            <input type="radio" ng-model="ent_info.ei_property" required name="ei_property" id="ei_property1" value="1"> 国营
+                            <input type="radio" ng-model="ent_info.ei_property" required name="ei_property" id="ei_property2" value="2"> 私营
+                            <input type="radio" ng-model="ent_info.ei_property" required name="ei_property" id="ei_property3" value="3"> 混合所有制
+                        </div>
+                        <div class="help-block col-sm-offset-0 col-sm-4 col-xs-12 col-xs-offset-3" >
+                            <span ng-show="edit_ent_info_form.ei_property.$error.required" >不能为空</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ei_size" class="col-sm-2 col-xs-3 control-label">企业规模</label>
+                        <div class="col-sm-2 col-xs-3">
+                            <select class="form-control" id="ei_size" ng-model="ent_info.ei_size"  ng-options="s.id as s.value for s in size">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ei_link" class="col-sm-2 col-xs-3 control-label">主页链接</label>
+                        <div class="col-sm-5 col-xs-8">
+                            <input type="text"  name="ent_info.ei_link" ng-model="ent_info.ei_link" maxlength="" class="form-control" id="ei_link" placeholder="企业主页链接">
+                        </div>
+                        <div class="help-block col-sm-offset-0 col-sm-4 col-xs-12 col-xs-offset-3" >
+                            <span ng-show="edit_ent_info_form.ei_link.$error.url" >链接格式不对</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ei_intro" class="col-sm-2 col-xs-3 control-label">企业介绍</label>
+                        <div class="col-sm-5 col-xs-8">
+                            <textarea rows="8"  name="ent_info.ei_intro" ng-model="ent_info.ei_intro" required class="form-control" maxlength="512" id="ei_intro" placeholder="企业介绍"></textarea>
+                        </div>
+                        <div class="help-block col-sm-offset-0 col-sm-4 col-xs-12 col-xs-offset-3" >
+                            <span ng-show="edit_ent_info_form.ei_intro.$error.required" >不能为空</span>
+                            <span ng-show="edit_ent_info_form.ei_intro.$error.maxlength" >介绍过长</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ei_linkman_name" class="col-sm-2 col-xs-3 control-label">联系人</label>
+                        <div class="col-sm-5 col-xs-8">
+                            <input type="text"  name="ent_info.ei_linkman_name" required ng-model="ent_info.ei_linkman_name" class="form-control" id="ei_linkman_name" placeholder="联系人">
+                        </div>
+                        <div class="help-block col-sm-offset-0 col-sm-4 col-xs-12 col-xs-offset-3" >
+                            <span ng-show="edit_ent_info_form.ei_linkman_name.$error.required" >不能为空</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ei_linkman_phone" class="col-sm-2 col-xs-3 control-label">联系电话</label>
+                        <div class="col-sm-5 col-xs-8">
+                            <input type="text" name="ei_linkman_phone" required ng-model="ent_info.ei_linkman_phone" ng-pattern="/1[3|5|7|8|][0-9]{9}/g" class="form-control" id="ei_linkman_phone"  placeholder="联系电话">
+                        </div>
+                        <div class="help-block col-sm-offset-0 col-sm-4 col-xs-12 col-xs-offset-3" >
+                            <span ng-show="edit_ent_info_form.ei_linkman_phone.$error.required" >不能为空</span>
+                            <span ng-show="edit_ent_info_form.ei_linkman_phone.$error.pattern" >格式不正确</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ei_linkman_pic" class="col-sm-2 col-xs-3 control-label">联系人头像</label>
+                        <div class="col-sm-5 col-xs-8 ">
+                            <img ng-src={{ent_info.ei_linkman_pic}} id="head_img_view_ei_linkman_pic" class="img-responsive">
+                            <input type="file"  ng-model="ent_info.ei_linkman_pic"  name="ei_linkman_pic" class="form-control" id="ei_linkman_pic">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ei_liscense" class="col-sm-2 col-xs-3 control-label">企业执照</label>
+                        <div class="col-sm-5 col-xs-8 ">
+                            <img ng-src={{ent_info.ei_liscense}} id="head_img_view_ei_liscense" class="img-responsive">
+                            <input type="file"  ng-model="ent_info.ei_liscense"  name="ei_liscense" class="form-control" id="ei_liscense">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit"   ng-disabled="edit_ent_info_form.$invalid"  class="btn btn-primary">保存</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <div class="panel-footer">
+
+        </div>
+    </div>
+
+</div>

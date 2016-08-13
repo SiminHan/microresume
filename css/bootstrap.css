@@ -4245,6 +4245,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-collapse.in {
   overflow-y: auto;
 }
+
 @media (min-width: 768px) {
   .navbar-collapse {
     width: auto;
@@ -4364,7 +4365,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   display: block;
   width: 22px;
   height: 2px;
-  border-radius: 1px;
+  border-radius: 2px;
 }
 .navbar-toggle .icon-bar + .icon-bar {
   margin-top: 4px;
@@ -4582,14 +4583,14 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   background-color: transparent;
 }
 .navbar-default .navbar-toggle {
-  border-color: ##307FCE;
+  border-color: #307FCE;
 }
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-  background-color: ##307FCE;
+  background-color: #307FCE;
 }
 .navbar-default .navbar-toggle .icon-bar {
-  background-color: ##307FCE;
+  background-color: #307FCE;
 }
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {
@@ -4678,11 +4679,11 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   background-color: transparent;
 }
 .navbar-inverse .navbar-toggle {
-  border-color: #333333;
+  /*border-color: #333333;*/
 }
 .navbar-inverse .navbar-toggle:hover,
 .navbar-inverse .navbar-toggle:focus {
-  background-color: #333333;
+  background-color: #4080BF;
 }
 .navbar-inverse .navbar-toggle .icon-bar {
   background-color: #ffffff;
@@ -4966,16 +4967,17 @@ a.label:focus {
 .badge {
   display: inline-block;
   min-width: 10px;
-  padding: 3px 7px;
-  font-size: 12px;
+  padding: 3px 10px;
+  font-size: 14px;
   font-weight: bold;
   color: #ffffff;
   line-height: 1;
   vertical-align: middle;
   white-space: nowrap;
   text-align: center;
-  background-color: #777777;
-  border-radius: 0px;
+  background-color: #00509F;
+  border-radius: 500px;
+  margin-left: 5px;
 }
 .badge:empty {
   display: none;
@@ -6085,10 +6087,11 @@ button.close {
 .tooltip-inner {
   max-width: 200px;
   padding: 3px 8px;
-  color: #ffffff;
+  color: #000000;
   text-align: center;
-  background-color: #000000;
-  border-radius: 0px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  border: 1px solid #DADADA;
 }
 .tooltip-arrow {
   position: absolute;

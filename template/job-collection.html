@@ -1,0 +1,109 @@
+<div class="col-md-7">
+    <ul class="tabs-nav">
+        <li class="active"><a href="#">最近收藏</a></li>
+    </ul>
+
+    <div class="tabs-container">
+
+        <div class="row search-and-new">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="input-group">
+                    <input type="text" ng-model="search_resume_text" class="form-control" placeholder="输入关键字快速查找">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" ng-click="title='j_publish_time';desc=!desc">发布日期</button>
+                      </span>
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" ng-click="title='jc_time';desc=!desc">收藏日期</button>
+                      </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" style="display: block;">
+            <ul class="jobs" style="padding-left: 0">
+
+                <!--entity-->
+                <li ng-repeat="job in data|filter:{$:search_resume_text}|orderBy:title:desc" class="row job-entry">
+                    <div class="row">
+
+                        <div class="col-md-6 col-xs-12 col-sm-6 job-entry-left">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-3 col-xs-3 col-xxs-4">
+                                    <a href="{{job.ei_link}}">
+                                        <img ng-src={{job.ei_pic}} class=""/>
+                                    </a>
+                                </div>
+                                <div class="col-md-8 col-sm-9 col-xs-9 ">
+                                    <h4 class="job_name"><a href="job-detail/{{j_id}}">{{job.j_name}}</a></h4>
+                                    <h5>
+                                        <a href="enterprise/{{e_id}}"><span class="company">{{job.ei_name}}</span></a>
+                                    </h5>
+                                    <h6>
+                                        <span class="job_property">{{get_property(job.ei_property)}}</span>
+                                        <span class="job_size">规模{{get_size(job.ei_size)}}</span>
+                                    </h6>
+                                    <h5>
+                                        <span class="salary">{{job.j_min_salary}}-{{job.j_max_salary}}</span>
+                                        <span class="job_location">{{job.city_name}}</span>
+                                    </h5>
+                                    <h6>
+                                        <span class="collection_time">收藏时间:{{job.jc_time|date:'yyyy-MM-dd'}}</span>
+                                    </h6>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6 text-right col-xs-12 col-sm-6 job-entry-right">
+                            <h6><span class="job_summary">{{job.j_summary}}</span></h6>
+                            <h6><span class="job_experience">{{job.j_experience}}</span></h6>
+                            <h6>
+                                <span class="job_education">{{get_education(job.j_education)}}学历</span>
+                                <span class="job_number">招{{job.j_number}}人</span>
+                            </h6>
+                            <img ng-src={{job.ei_linkman_pic}} class="alignright img-responsive" style="width: 40px;height: 40px"/>
+                            <h6>
+                                <span class="job_linkman_name">{{job.ei_linkman_name}}</span>
+                                <span class="job_linkman_phone">{{job.ei_linkman_phone}}</span>
+                            </h6>
+                            <h6><span class="job_publish_time">{{job.j_publish_time|date:'yyyy-MM-dd'}}</span></h6>
+                        </div>
+
+                    </div>
+                </li>
+                <!--entity end-->
+
+            </ul>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+<script>
+    $(function(){
+
+        var $tabsNav    = $('.tabs-nav'),
+                $tabsNavLis = $tabsNav.children('li');
+
+        $tabsNav.each(function(){
+            var $this = $(this);
+            $this.next().children('.tab-content').stop(true,true).hide()
+                    .first().show();
+            $this.children('li').first().addClass('active').stop(true,true).show();
+        });
+
+        $tabsNavLis.on('click', function(e) {
+            console.log("aaa");
+            var $this = $(this);
+            $this.siblings().removeClass('active').end()
+                    .addClass('active');
+            var idx = $this.parent().children().index($this);
+            $this.parent().next().children('.tab-content').stop(true,true).hide().eq(idx).fadeIn();
+            e.preventDefault();
+        });
+
+    });
+</script>

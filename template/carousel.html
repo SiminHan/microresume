@@ -1,27 +1,12 @@
 <div class="image image-block" >
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 
-        <div class="carousel-inner" role="listbox">
-            <div class="item active">
-                <a href="#"><img src="img/004.jpg" alt="First slide" ></a>
+        <div class="carousel-inner" role="listbox" >
+            <div class="item" ng-repeat="ra in data" ng-class="{true :'active', false :''}[$first]">
+                <a href="{{ra.ra_link}}"><img ng-src="{{ra.ra_url}}" alt="{{ra.ra_name}}" ></a>
                <!-- <span class="img-text"><a href="#">first</a></span>-->
             </div>
-            <div class="item">
-                <a href="#"><img src="img/004.jpg" alt="Second slide" ></a>
-                <!-- <span class="img-text"><a href="#">second</a></span>-->
-            </div>
-            <div class="item">
-                <a href="#"><img src="img/004.jpg" alt="Third slide" ></a>
-                 <!--<span class="img-text"><a href="#">third</a></span>-->
-            </div>
-            <div class="item">
-                <a href="#"><img src="img/004.jpg" alt="Forth slide" ></a>
-                <!--<span class="img-text"><a href="#">third</a></span>-->
-            </div>
-            <div class="item">
-                <a href="#"><img src="img/004.jpg" alt="Fifth slide" ></a>
-                <!--<span class="img-text"><a href="#">third</a></span>-->
-            </div>
+
         </div>
         <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -32,11 +17,7 @@
             <span class="sr-only">Next</span>
         </a>
         <ol class="carousel-indicators">
-            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="4"></li>
-        </ol>
+            <li data-target="#carousel-example-generic" ng-repeat="ra in data" ng-class="{true :'active', false :''}[$first]" data-slide-to="{{$index}}" ></li>
+         </ol>
     </div>
 </div>

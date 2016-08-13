@@ -1,0 +1,119 @@
+<div class="col-md-7">
+    <ul class="tabs-nav">
+        <li class="active" ng-click="isBtnActive(true)"><a href="#">未审核</a></li>
+        <li class="" style="" ng-click="isBtnActive(false)"><a href="#">已通过</a></li>
+        <li class="" style="" ng-click="isBtnActive(false)"><a href="#">未通过</a></li>
+    </ul>
+
+    <div class="tabs-container">
+
+        <div class="row search-and-new">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="input-group">
+                    <input type="text" ng-model="search_resume_text" class="form-control" placeholder="输入关键字快速查找">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" ng-click="title='d_time';desc=!desc">投递日期</button>
+                      </span>
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" id="check_time_btn"  disabled  ng-click="title='d_checktime';desc=!desc">审核日期</button>
+                      </span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="tab-content" style="display: block;">
+            <ul class="jobs" style="padding-left: 0">
+                <!--resume entity start-->
+                <li class="row job-entry resume-summary" ng-repeat="job in data |filter:{d_check:1}|filter:{$:search_resume_text}|orderBy:title:desc" >
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 text-center">
+                            <h5 class="resume-summary-title"><a href="/view-resume-detail?id={{job.j_id}}">{{job.j_name}}</a></h5>
+                            <h6 class="feedback-ent"><a href="{{job.e_id}}">[{{job.e_name}}]</a></h6>
+                        </div>
+                        <div class="col-md-6 col-sm-12 text-center">
+                            <h6 class="feedback-resume">使用简历：<a href="{{job.r_id}}">{{job.r_name}}</a></h6>
+                            <span class="feedback-time">投递时间:{{job.d_time|date:"yyyy-MM-dd"}}</span>
+                        </div>
+                    </div>
+                </li>
+                <!--resume entity end-->
+            </ul>
+
+        </div>
+
+        <div class="tab-content" style="none: block;">
+            <ul class="jobs" style="padding-left: 0">
+                <!--resume entity start-->
+                <li class="row job-entry resume-summary" ng-repeat="job in data|filter:{$:search_resume_text}|filter:{d_check:2}|orderBy:title:desc" >
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6 text-center">
+                            <h5 class="resume-summary-title"><a href="/view-resume-detail?id={{job.j_id}}">{{job.j_name}}</a></h5>
+                            <h6 class="feedback-ent"><a href="{{job.e_id}}">[{{job.e_name}}]</a></h6>
+                        </div>
+                        <div class="col-md-4 col-sm-6 text-center">
+                            <h6 class="feedback-resume">使用简历：<a href="{{job.r_id}}">{{job.r_name}}</a></h6>
+                            <span class="feedback-time">投递时间:{{job.d_time|date:"yyyy-MM-dd"}}</span>
+                        </div>
+                        <div class="col-md-4 col-sm-12 text-center">
+                            <p class="feedback-note">回复：{{job.d_remark}}<br/>{{job.d_check_time|date:"yyyy-MM-dd"}}</p>
+
+                        </div>
+                    </div>
+                </li>
+                <!--resume entity end-->
+            </ul>
+
+        </div>
+
+        <div class="tab-content" style="none: block;">
+            <ul class="jobs" style="padding-left: 0">
+                <!--resume entity start-->
+                <li class="row job-entry resume-summary" ng-repeat="job in data |filter:{$:search_resume_text}|filter:{d_check:3}|orderBy:title:desc" >
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6 text-center">
+                            <h5 class="resume-summary-title"><a href="/view-resume-detail?id={{job.j_id}}">{{job.j_name}}</a></h5>
+                            <h6 class="feedback-ent"><a href="{{job.e_id}}">[{{job.e_name}}]</a></h6>
+                        </div>
+                        <div class="col-md-4 col-sm-6 text-center">
+                            <h6 class="feedback-resume">使用简历：<a href="{{job.r_id}}">{{job.r_name}}</a></h6>
+                            <span class="feedback-time">投递时间:{{job.d_time|date:"yyyy-MM-dd"}}</span>
+                        </div>
+                        <div class="col-md-4 col-sm-12 text-center">
+                            <p class="feedback-note">回复：{{job.d_remark}}<br/>{{job.d_check_time|date:"yyyy-MM-dd"}}</p>
+
+                        </div>
+                    </div>
+                </li>
+                <!--resume entity end-->
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(function(){
+
+        var $tabsNav    = $('.tabs-nav'),
+                $tabsNavLis = $tabsNav.children('li');
+
+        $tabsNav.each(function(){
+            var $this = $(this);
+            $this.next().children('.tab-content').stop(true,true).hide()
+                    .first().show();
+            $this.children('li').first().addClass('active').stop(true,true).show();
+        });
+
+        $tabsNavLis.on('click', function(e) {
+            //console.log("aaa");
+            var $this = $(this);
+            $this.siblings().removeClass('active').end()
+                    .addClass('active');
+            var idx = $this.parent().children().index($this);
+            $this.parent().next().children('.tab-content').stop(true,true).hide().eq(idx).fadeIn();
+            e.preventDefault();
+        });
+
+    });
+</script>

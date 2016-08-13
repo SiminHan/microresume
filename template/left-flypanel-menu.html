@@ -1,0 +1,37 @@
+<div class="panelcontent" data-panel="treemenu">
+    <nav class="flypanels-treemenu" role="navigation">
+        <ul>
+            <li ng-repeat="catalog in data.catalogues" class="haschildren">
+
+                <div><a href={{catalog.title.link}} class="link">{{catalog.title.name}}
+                </a> <a href="#" class="expand">{{JSONLength(catalog.title.submenu)}}<i class="fa icon"></i></a>
+                </div>
+
+                <ul>
+                    <li class="haschildren" ng-repeat="submenu in catalog.title.submenu">
+
+                        <div class="link"><a href={{submenu.link}} class="link">{{submenu.title}}</a>
+                            <a href="#" class="expand">{{JSONLength(submenu.subtype)}}<i class="fa icon"></i></a>
+                        </div>
+
+                        <ul>
+                            <li class="haschildren" ng-repeat="subtype in submenu.subtype">
+
+                                <div class="link"><a href={{subtype.link}} class="link">{{subtype.title}}</a>
+                                    <a href="#" class="expand">{{JSONLength(subtype.links)}}<i class="fa icon"></i></a>
+                                </div>
+
+                                <ul>
+                                    <li ng-repeat="link in subtype.links">
+                                        <div><a href={{link.link}} class="link">{{link.name}}</a></div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</div>

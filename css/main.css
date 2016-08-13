@@ -1,0 +1,273 @@
+.dialog-head{
+    border-top: 10px solid #00509F;
+}
+
+.left-flypanel-user-head{
+    background: #307FCE;padding: 15px;
+    padding-bottom: 0;
+}
+
+.left-flypanel-user-head img{
+    margin-right: 20px;
+    width: 70px;
+    height: 70px;
+}
+
+.left-flypanel-user-head .user-message{
+    padding-top: 30px;
+    padding-left: 20px;
+    color: #ffffff;
+    font-size: 18px;
+}
+
+.left-flypanel-user-head .user-message p{
+    font-size: 16px;
+}
+
+.left-flypanel-user-menu{
+    color: #000000;
+    background: #efefef;
+    margin: 0 20px 20px 20px;
+}
+
+.left-flypanel-user-menu ul{
+    padding-left: 0;
+}
+
+.left-flypanel-user-menu ul li{
+    display: block;
+    height: 40px;
+    padding: 15px 0 15px 30px;
+}
+
+.left-flypanel-user-menu ul li a{
+    color: #000000;
+    padding: 10px 10px 10px 10px;
+}
+
+.left-flypanel-user-menu ul li:hover{
+    background-color: #DADADA;
+}
+
+.left-flypanel-user-menu ul li a:hover{
+    text-decoration: none;
+}
+
+.left-side-user-menu{
+    border-top: #01509F 10px solid;
+}
+
+.left-side-user-menu ul{
+    padding-left: 0;
+    border: none;
+}
+
+.left-side-user-menu ul li{
+    padding:19px;
+    background-color: #F5F5F5;
+}
+
+.left-side-user-menu ul li:first-child{
+   border-top: none;
+}
+
+.left-side-user-menu ul li:hover{
+     background-color: #307FCE;
+ }
+
+.left-side-user-menu ul li:hover  a{
+    color: #ffffff;
+}
+
+.left-side-user-menu ul li a{
+    color: #000000;
+    font-size: 18px;
+ }
+
+.left-side-user-menu ul li a:hover{
+    text-decoration: none;
+}
+
+.job-entry span{
+    padding-left: 10px;
+}
+
+.job-entry-left img{
+    border: #DADADA 1px;
+    border-radius: 0;
+    max-width: 100px;
+    min-width: 50px;
+    padding-left:0 ;
+    padding-right: 0;
+    margin-left: auto;
+}
+
+.job_location, .job_property,.job_size{
+    padding-left: 10px;
+    color: #000000;
+}
+
+.job-entry-right img{
+    margin: 2px 2px 2px 5px;
+}
+
+.job-entry-right {
+    font-size: 15px;
+    line-height: 20px;
+}
+.job_summary,.job_experience,.job_education{
+    font-size: 13px;
+}
+
+.user_info_detail_line{
+    line-height: 25px;
+    margin-top: 10px;
+    color: #000000;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.user_info_detail_title{
+    text-align: right;
+}
+
+.separate_block{
+    display: block;
+    width: 100%;
+    border-bottom: 3px solid #DADADA;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.separate_block_title{
+    color: #0169d2;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 3px 40px 5px 20px;
+    border-bottom: 3px solid #0169d2;
+}
+
+.user_info_detail_head{
+    margin-top: 20px;
+}
+
+.user_info_detail_head h4{
+    color: #0169d2;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.resume-summary{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #DADADA;
+}
+
+.resume-summary-title{
+    font-size: 16px;
+    font-weight: 600;
+}
+.resume-summary-time{
+    font-size: 14px;
+}
+
+.resume-btn{
+     border-radius: 1000px;
+     font-size: 15px;
+     margin-left: 5px;
+     color: #0150A0;
+    margin-bottom: 15px;
+ }
+.resume-btn :hover{
+    color: #002142;
+}
+
+.search-and-new{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.addblock{
+    border: 2px solid #DADADA;
+    margin: 15px;
+    padding: 15px;
+}
+
+.floatspan{
+    padding-left: 25px;
+    margin-top: 5px;
+    margin-left: 5px;
+    float: left;
+}
+
+.resume-line-block{
+    background-color: rgba(230, 240, 193, 0.22);
+   /*border-bottom: 1px solid #DADADA;*/
+    margin-bottom: 15px;
+}
+
+.resume-line-block span{
+    line-height: 20px;
+}
+.feedback-resume,.feedback-ent,.feedback-note,.feedback-time{
+    color: #2d3338;
+    font-size: 15px;
+}
+
+.feedback-note p{
+    font-size: 14px;
+}
+
+.feedback-resume a,.feedback-ent a{
+    color: #2d3338;
+    font-size: 15px;
+}
+
+.notice{
+    padding-top: 3px;
+    margin: 2px;
+}
+.notice_title{
+    font-size: 16px;
+    font-weight: 600;
+    color: #00509F;
+}
+.notice_time{
+    font-size: 14px;
+    font-weight: normal;
+    color: #2d3338;
+    padding: 4px;
+}
+.notice_detail{
+    font-size: 14px;
+    font-weight: normal;
+    color: #2d3338;
+    padding: 4px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.resume-img{
+    margin-bottom: 3px;
+    margin-top: 3px;
+}
+
+.resume-name{
+    font-weight: 600;
+}
+
+.resume-sex,.resume-age{
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.resume-c_name{
+    font-weight: 600;
+    padding: 0 10px;
+}
+
+.resume-btn{
+    margin-bottom: 3px;
+}
